@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    input {
+      border-radius: 5px;
+      font-size: 30px;
+    }
+
+    h4 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <form action="">
+      <label for="data">Print the Fibonacci Series:</label>
+      <input type="text" id="data" name="data">
+      <input type="submit" value="Submit">
+    </form>
+    <h4>Result:-</h4>
+  </div>
+  <script>
+    const form = document.querySelector('form');
+    const input = document.getElementById('data');
+    const heading = document.querySelector('h4');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const num = input.value.trim();
+
+      if (isNaN(num) || num === '') {
+        heading.textContent = 'Please enter a valid number.';
+        return;
+      }
+
+      if (num < 0) {
+        heading.textContent = `Please enter a valid number.`;
+        input.value = '';
+        return;
+      }
+
+      if (num == 0) {
+        heading.textContent = `Fibonacci Series: 0`;
+        input.value = '';
+        return;
+      }
+
+      if (num == 1) {
+        heading.textContent = `Fibonacci Series: 0, 1`;
+        input.value = '';
+        return;
+      }
+
+      let fibSeries = [0, 1];
+      for (let i = 2; i < num; i++) {
+        fibSeries[i] = fibSeries[i - 1] + fibSeries[i - 2];
+      }
+
+      heading.textContent = `Fibonacci Series: ${fibSeries.join(', ')}`;
+      input.value = '';
+
+    });
+  </script>
+</body>
+
+</html>
